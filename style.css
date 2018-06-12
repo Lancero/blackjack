@@ -1,9 +1,12 @@
 body {
-    background: #ccc;
+    background: #000;
+    background-image: url('img/las-vegas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .deck-card {
     float: left;
-    padding: 15px;
+    padding: 15px 5px;
     font-size: 20px;
 }
 .deck-card.selected {

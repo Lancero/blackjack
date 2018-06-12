@@ -18,7 +18,7 @@ deck[12] = {name: "2", color: "Clubs", points: 2, image: "/C2.png"}
 
 deck[13] = {name: "Ace", color: "Spades", points: 11, image: "/SA.png"}
 deck[14] = {name: "King", color: "Spades", points: 10, image: "/SK.png"}
-deck[15] = {name: "Queen", color: "Spades", points: 10, image: "/CQ.png"}
+deck[15] = {name: "Queen", color: "Spades", points: 10, image: "/SQ.png"}
 deck[16] = {name: "Jack", color: "Spades", points: 10, image: "/SJ.png"}
 deck[17] = {name: "10", color: "Spades", points: 10, image: "/S10.png"}
 deck[18] = {name: "9", color: "Spades", points: 9, image: "/S9.png"}
@@ -46,7 +46,7 @@ deck[38] = {name: "2", color: "Diamonds", points: 2, image: "/D2.png"}
 
 deck[39] = {name: "Ace", color: "Hearts", points: 11, image: "/HA.png"}
 deck[40] = {name: "King", color: "Hearts", points: 10, image: "/HK.png"}
-deck[41] = {name: "Queen", color: "Hearts", points: 10, image: "/CQ.png"}
+deck[41] = {name: "Queen", color: "Hearts", points: 10, image: "/HQ.png"}
 deck[42] = {name: "Jack", color: "Hearts", points: 10, image: "/HJ.png"}
 deck[43] = {name: "10", color: "Hearts", points: 10, image: "/H10.png"}
 deck[44] = {name: "9", color: "Hearts", points: 9, image: "/H9.png"}
@@ -101,9 +101,9 @@ function showCroupierHand(){
 
     for(i=0; i<croupier.length; i++){
         if(croupier[i].isHidden){
-            croupierHandContent = croupierHandContent + '<div class="deck-card text-light d-none"><img class="single-card-deck" src="img' + hand[i].image + '"></div>'; 
+            croupierHandContent = croupierHandContent + '<div class="deck-card text-light d-none"><img class="single-card-deck" src="img' + croupier[i].image + '"></div>'; 
         }else{
-            croupierHandContent = croupierHandContent + '<div class="deck-card text-light"><img class="single-card-deck" src="img' + hand[i].name + '"></div>';                    
+            croupierHandContent = croupierHandContent + '<div class="deck-card text-light"><img class="single-card-deck" src="img' + croupier[i].image + '"></div>';                    
         }                
     }
     document.getElementById("croupier-hand").innerHTML = croupierHandContent;
@@ -113,7 +113,7 @@ function showPoints(cPoints, pName, isStand){
     if (pName === 'hand'){
         var handPoints = playerPoints(hand);                    
 
-        if(handPoints.length===1){              // Bez Asa            
+        if(handPoints.length===1){                      // Bez Asa            
             if(handPoints[0]===21){                
                 playerWins();
                 console.log('Gracz zdobył 21 punktów - gracz wygrywa');              
@@ -123,7 +123,7 @@ function showPoints(cPoints, pName, isStand){
                 console.log('Gracz przekroczył 21 punktów - gracz przegrywa'); 
             }            
             document.getElementById("total-points-hand").innerHTML = handPoints[0];
-        }else{                                  // Z Asem                                                                                                
+        }else{                                          // Z Asem                                                                                                
             var oPoints = 0;
             for(i=0; i<handPoints.length; i++){
                 if(handPoints[i]===21){
@@ -174,10 +174,9 @@ function showPoints(cPoints, pName, isStand){
                     playerLoses();
                     console.log('Krupier zdobył więcej punktów - gracz przegrywa'); 
                 }else if(croupierPoints[0]===handPoints[0]){
+                    draw();
                     console.log('REMIS!'); 
                 }
-            }else{
-                console.log(' DEAD END #3');  
             }
             document.getElementById("total-points-croupier").innerHTML = croupierPoints[0];
 
@@ -187,6 +186,7 @@ function showPoints(cPoints, pName, isStand){
             for(i=0; i<croupierPoints.length; i++){
                 if(croupierPoints[i]===21){                    
                     playerLoses();
+                    $('.croupier-wrapper h4').removeClass('invisible');
                     console.log('Krupier zdobył 21 punktów z Asem - gracz przegrywa'); 
                 }else if(croupierPoints[i]>21){
                     oPoints++;
@@ -215,6 +215,9 @@ function showPoints(cPoints, pName, isStand){
                     if(croupierFinal > rivalPoints){
                         playerLoses();
                         console.log('Krupier ma więcej punktów i wygrywa');
+                    }else if(croupierFinal === rivalPoints){
+                        draw();
+                        console.log('REMIS!'); 
                     }else{
                         playerWins();
                         console.log('Krupier ma mniej punktów - gracz wygrywa');

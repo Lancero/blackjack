@@ -187,7 +187,7 @@ var auto1 = function(){ 			// Początek rozgrywki (po dwie kart dla gracza)
 	}
 }
 
-// CONTROLS
+// BUTTONS CONTROLS
 
 $(document).ready(function(){
 	shuffle();
@@ -198,14 +198,12 @@ $('#random-card').click(function(){
 });
 $('#btn-2').click(function(){
 	maxRandom();
-	//showDeck();
 	showHand();
 	showCroupierHand();
 });
 
 $('#btn-hit').click(function(){
 	hit();
-	//showDeck();
 	showHand();
 });
 
