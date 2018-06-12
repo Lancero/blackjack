@@ -1,0 +1,27 @@
+body {
+    background: #ccc;
+}
+.deck-card {
+    float: left;
+    padding: 15px;
+    font-size: 20px;
+}
+.deck-card.selected {
+    color: red;
+    background: #fff;
+}
+.deck-card.clear {
+    clear: both;
+}
+.card-symbol {
+    width: 30px;
+    max-width: 100%;
+}
+#hand .deck-card,
+#croupier-hand .deck-card{
+    font-size: 24px;
+}
+
+.single-card-deck{
+    max-height: 180px;
+}
