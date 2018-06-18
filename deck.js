@@ -85,7 +85,6 @@ function showDeck(){
     }
     document.getElementById("deck").innerHTML = deckContent;	
 }
-//showDeck();
 
 function showHand(){                                    // Karty gracza
     var handContent='';
@@ -245,7 +244,6 @@ var playerPoints = function(player){
     var pMod = 0;
     for(i=0; i<player.length; i++){
         aPoints[0]+=player[i].points; 
-
         if(player[i].points===11){
             pMod++; 
         }                 
@@ -264,6 +262,5 @@ var playerMax = function(arr){
         }
     }
     var maxPlayer = Math.max(...filteredArr);
-
     return maxPlayer;
 }

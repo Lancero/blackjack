@@ -6,11 +6,10 @@
 	
 	<title>BlackJack game</title>
 	
-	<meta name="description" content="Opis w Google" />
-	<meta name="keywords" content="słowa, kluczowe, wypisane, po, porzecinku" />
+	<meta name="description" content="Simple BlackJack Game in your browser" />
+	<meta name="keywords" content="game, blackjack" />
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
 	<link rel="stylesheet" href="style.css"/>
 	
 </head>
@@ -22,10 +21,8 @@
 		</div>
 		<div class="row">
 			<div class="col d-flex justify-content-center">
-				<button id="btn-start" class="btn btn-primary btn-lg">Start game</button>					
-				<button id="btn-reset" class="btn btn-secondary btn-lg">New game</button>
-				<button id="random-card" class="btn btn-secondary d-none">Tasuj talię</button>
-				<button id="btn-2" class="btn btn-secondary d-none">Wybierz 1 kartę</button>	
+				<button id="btn-start" class="btn btn-primary btn-lg mr-3">Start game</button>					
+				<button id="btn-reset" class="btn btn-secondary btn-lg ml-3">New game</button>	
 			</div>				
 		</div>															
 	</div>
@@ -34,11 +31,7 @@
 			<div class="col bg-success d-flex flex-column justify-content-between hand-wrapper" style="border-right: 1px solid">
 				<h3 class="text-light pt-2">Hand:</h3>
 				<div id="hand" class=""></div>
-				<h4 class="mb-3 d-none">Total points: <span id='total-points-hand'>0</span></h4>
-				<div class="d-flex justify-content-center">
-					<button id="btn-hit" class="btn btn-secondary btn-lg d-none m-3">Hit</button>								
-					<button id="btn-stand" class="btn btn-secondary btn-lg d-none m-3">Stand</button>
-				</div>					
+				<h4 class="mb-3 d-none">Total points: <span id='total-points-hand'>0</span></h4>									
 			</div>
 			<div class="col bg-success d-flex flex-column justify-content-between croupier-wrapper">
 				<h3 class="text-light pt-2">Croupier:</h3>
@@ -46,19 +39,14 @@
 				<h4 class="mb-3 invisible">Total points: <span id='total-points-croupier'>0</span></h4>				
 			</div>
 		</div>
-		<div class="row">
-			<div class="col bg-success d-flex justify-content-center">				
-				<button id="btn-hit" class="btn btn-secondary btn-lg d-none">Hit</button>								
-				<button id="btn-stand" class="btn btn-secondary btn-lg d-none">Stand</button>	
-										
-			</div>		
+		<div id='btn-controls-wrapper' class="row d-none">
+			<div class="col bg-success d-flex justify-content-center mt-3 p-3">				
+				<button id="btn-hit" class="btn btn-primary btn-lg mr-3">Hit</button>								
+				<button id="btn-stand" class="btn btn-primary btn-lg ml-3">Stand</button>											
+			</div>
+			<div class="col"></div>		
 		</div>
-		<div class="row">
-			<div class="col d-flex justify-content-center">				
-				<button id="random-card" class="btn btn-secondary d-none">Tasuj talię</button>
-				<button id="btn-2" class="btn btn-secondary d-none">Wybierz 1 kartę</button>	
-			</div>				
-		</div>
+
 		<div class="row mt-3">
 			<div id='info-start-game' class="col-12 card text-white bg-info ">
 				<div class="card-body text-center">

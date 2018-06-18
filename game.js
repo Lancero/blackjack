@@ -11,23 +11,23 @@ var shuffle = function(){ // Tasowanie - przypisanie wartości random
 	//console.log(deck)
 }
 
-var cardCounter = 0;				// Licznik losowanych kart
+var cardCounter = 0;										// Licznik losowanych kart
 var cardCounter2 = 0;
 
 // ALT VERSION
 
 var superMax = function(){
-	var realMax2 = Math.max(...deck.map(o => o.random)); // Max wartość random2
-	var maxRandomCard2 = deck.find(function(obj){ // Wylosowana karta
+	var realMax2 = Math.max(...deck.map(o => o.random)); 	// Max wartość random2
+	var maxRandomCard2 = deck.find(function(obj){ 			// Wylosowana karta
 		return obj.random === realMax2;
 	});
 	maxRandomCard2.selected = true;
-	maxRandomCard2.random = 0;		// Wybrana karta ma zerowaną wartość aby nie została wybrana ponownie
+	maxRandomCard2.random = 0;								// Wybrana karta ma zerowaną wartość aby nie została wybrana ponownie
 	cardCounter2++;
 	return maxRandomCard2;
 }
 
-var checkPoints = function(arr, player){ 			// New check Points
+var checkPoints = function(arr, player){ 					// New check Points
 	var playerPoints = 0;
 	for (i=0; i<arr.length; i++){			
 		playerPoints+=arr[i].points;			
@@ -112,34 +112,30 @@ var calculatePoints = function(arr, playerName, isStand){
 	if(hand.length === 2 && croupier.length ===2 && isStand===false){		
 		checkPoints(hand);
 		checkPoints(croupier);
-		$('#btn-hit').removeClass('d-none').removeClass('btn-secondary').addClass('btn-primary');
-		$('#btn-stand').removeClass('d-none').removeClass('btn-secondary').addClass('btn-primary');
+		$('#btn-controls-wrapper').removeClass('d-none');		
 	}
 }
 
 var playerWins = function(){	
 	$('#info-game-win').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
-	$('#btn-hit').addClass('d-none');
-	$('#btn-stand').addClass('d-none');
+	$('#btn-controls-wrapper').addClass('d-none');	
 	$('#btn-start').addClass('d-none');
 }
 var playerLoses = function(){
-	$('#btn-hit').addClass('d-none');
-	$('#btn-stand').addClass('d-none');
+	$('#btn-controls-wrapper').addClass('d-none');
 	$('#btn-start').addClass('d-none');
 	$('#info-game-lost').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
 }
 var draw = function(){
-	$('#btn-hit').addClass('d-none');
-	$('#btn-stand').addClass('d-none');
+	$('#btn-controls-wrapper').addClass('d-none');
 	$('#btn-start').addClass('d-none');
 	$('#info-game-draw').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
 }
 
-var sortByRandom = function(){ // Losowanie jednej karty z talii - wybranie karty z najwyższą wartością random
+var sortByRandom = function(){ 									// Losowanie jednej karty z talii - wybranie karty z najwyższą wartością random
 	var i;
 	var j = 1;
 	var k;
@@ -166,24 +162,22 @@ var sortByRandom = function(){ // Losowanie jednej karty z talii - wybranie kart
 		return element >= realMax;
 	}
 	
-
 	var realMax = Math.max(...deck.map(o => o.random)); 		// Max wartość random
 
-	var myResult = deck.find(function(obj){
+	/*var myResult = deck.find(function(obj){
 		return obj.random === realMax;
-	});
+	});*/
 }
 
 var auto1 = function(){ 			// Początek rozgrywki (po dwie kart dla gracza)
 	var i;
-	var delay = 4;  				// 400
+	var delay = 400;  				// 400
 	for(i=0; i<4; i++){
 		setTimeout(function(){
 			maxRandom();
-			//showDeck();
 			showHand();
 			showCroupierHand();
-		}, delay+=5); 			//500
+		}, delay+=500); 				//500
 	}
 }
 
@@ -213,6 +207,13 @@ $('#btn-stand').click(function(){
 });
 
 $('#btn-start').click(function(){
+	$('#btn-start').addClass('d-none');
+	auto1();
+	$('#info-start-game').addClass('d-none');
+	$('.hand-wrapper h4').removeClass('d-none');
+});
+
+$('#info-start-game').click(function(){
 	$('#btn-start').addClass('d-none');
 	auto1();
 	$('#info-start-game').addClass('d-none');

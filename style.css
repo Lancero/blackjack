@@ -6,7 +6,7 @@ body {
 }
 .deck-card {
     float: left;
-    padding: 15px 5px;
+    padding: 15px 0px;
     font-size: 20px;
 }
 .deck-card.selected {
@@ -24,7 +24,9 @@ body {
 #croupier-hand .deck-card{
     font-size: 24px;
 }
-
 .single-card-deck{
     max-height: 180px;
+}
+#info-start-game {
+    cursor: pointer;
 }
