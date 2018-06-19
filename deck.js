@@ -2,6 +2,7 @@ var hand = [];          // Karty na ręce
 var croupier = [];      // Karty krupiera
 var deck = [];          // Wszystkie karty
 
+// *** All cards below ***
 deck[0] = {name: "Ace", color: "Clubs", points: 11, image: "/CA.png"}
 deck[1] = {name: "King", color: "Clubs", points: 10, image: "/CK.png"}
 deck[2] = {name: "Queen", color: "Clubs", points: 10, image: "/CQ.png"}
@@ -86,7 +87,7 @@ function showDeck(){
     document.getElementById("deck").innerHTML = deckContent;	
 }
 
-function showHand(){                                    // Karty gracza
+function showHand(){                                    // Show players cards
     var handContent='';
     var cardSymbol = '';
     for(i=0; i<hand.length; i++){
@@ -94,7 +95,7 @@ function showHand(){                                    // Karty gracza
     }
     document.getElementById("hand").innerHTML = handContent;
 }
-                                                        // Karty krupiera
+                                                        // Croupiers cards
 function showCroupierHand(){
     var croupierHandContent='';
 

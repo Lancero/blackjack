@@ -1,20 +1,14 @@
-var shuffle = function(){ // Tasowanie - przypisanie wartości random
+var shuffle = function(){ 									// Shuffling - Random value for each card from deck
 	var i;
 	for (i=0; i<deck.length; i++){
-		/*if(deck[i].points===11){
-			deck[i].random = 0.98;
-		}else{*/
-			deck[i].random = Math.random();	
-		//}					
-					
+		deck[i].random = Math.random();										
 	}	
-	//console.log(deck)
 }
 
-var cardCounter = 0;										// Licznik losowanych kart
+var cardCounter = 0;										// Card counter
 var cardCounter2 = 0;
 
-// ALT VERSION
+// *** NEW VERSION ***
 
 var superMax = function(){
 	var realMax2 = Math.max(...deck.map(o => o.random)); 	// Max wartość random2
@@ -35,12 +29,12 @@ var checkPoints = function(arr, player){ 					// New check Points
 	return playerPoints;
 }
 
-var hit = function(){
+var hit = function(){										// Action on Hit button - New card taken and player points calculated
 	hand.push(superMax());
 	calculatePoints(hand, 'hand', false);
 }
 
-var standCheck = function(){
+var standCheck = function(){								// Action on Stand button - depends on croupier points. If 16 or less croupier have to take a card. 
 	var croupierPoints = playerPoints(croupier);
 	croupier[1].isHidden = false;
 	var isHigh = 0;
@@ -61,12 +55,12 @@ var standCheck = function(){
 	calculatePoints(croupierPoints, 'croupier', true);  
 }
 
-var standTakeCard = function(){
+var standTakeCard = function(){								// Action on stand - If croupier must take a card.
 	croupier.push(superMax());
 	standCheck();	
 }
 
-// END ALT VERSION
+// *** END NEW VERSION ***
 
 var maxRandom = function(){ 								// Wybranie karty o najwyższej wartości random
 	
@@ -116,26 +110,26 @@ var calculatePoints = function(arr, playerName, isStand){
 	}
 }
 
-var playerWins = function(){	
+var playerWins = function(){								// Action when player wins the game - showing info and controls the buttons visible.
 	$('#info-game-win').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
 	$('#btn-controls-wrapper').addClass('d-none');	
 	$('#btn-start').addClass('d-none');
 }
-var playerLoses = function(){
+var playerLoses = function(){								// Action when player loses the game - showing info and controls the buttons visible.
 	$('#btn-controls-wrapper').addClass('d-none');
 	$('#btn-start').addClass('d-none');
 	$('#info-game-lost').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
 }
-var draw = function(){
+var draw = function(){										// Action when both player and croupier have same points - showing info and controls the buttons visible.
 	$('#btn-controls-wrapper').addClass('d-none');
 	$('#btn-start').addClass('d-none');
 	$('#info-game-draw').removeClass('d-none');	
 	$('#btn-reset').removeClass('btn-secondary').addClass('btn-primary');
 }
 
-var sortByRandom = function(){ 									// Losowanie jednej karty z talii - wybranie karty z najwyższą wartością random
+var sortByRandom = function(){ 								// Losowanie jednej karty z talii - wybranie karty z najwyższą wartością random
 	var i;
 	var j = 1;
 	var k;
@@ -163,10 +157,6 @@ var sortByRandom = function(){ 									// Losowanie jednej karty z talii - wybr
 	}
 	
 	var realMax = Math.max(...deck.map(o => o.random)); 		// Max wartość random
-
-	/*var myResult = deck.find(function(obj){
-		return obj.random === realMax;
-	});*/
 }
 
 var auto1 = function(){ 			// Początek rozgrywki (po dwie kart dla gracza)
@@ -181,7 +171,7 @@ var auto1 = function(){ 			// Początek rozgrywki (po dwie kart dla gracza)
 	}
 }
 
-// BUTTONS CONTROLS
+// *** BUTTONS CONTROLS ***
 
 $(document).ready(function(){
 	shuffle();
@@ -223,4 +213,3 @@ $('#info-start-game').click(function(){
 $('#btn-reset').click(function(){
 	location.reload();
 });
-
