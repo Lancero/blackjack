@@ -1,8 +1,9 @@
-var hand = [];          // Karty na ręce
-var croupier = [];      // Karty krupiera
-var deck = [];          // Wszystkie karty
+var hand = [];                                              // Player's cards
+var croupier = [];                                          // Croupier's cards
+var deck = [];                                              // All playing cards
 
-// *** All cards below ***
+// *** All cards in deck below ***
+
 deck[0] = {name: "Ace", color: "Clubs", points: 11, image: "/CA.png"}
 deck[1] = {name: "King", color: "Clubs", points: 10, image: "/CK.png"}
 deck[2] = {name: "Queen", color: "Clubs", points: 10, image: "/CQ.png"}
@@ -80,14 +81,13 @@ function showDeck(){
                 deckContent = deckContent + '<div class="deck-card text-muted">'+ deck[i].name + cardSymbol() +'</div>';
             }else{
                 deckContent = deckContent + '<div class="deck-card"><span class="">'+ deck[i].name+'</span>' + cardSymbol() +'</div>';
-            }
-            
+            }            
         }
     }
     document.getElementById("deck").innerHTML = deckContent;	
 }
 
-function showHand(){                                    // Show players cards
+function showHand(){                                    // Showing players cards
     var handContent='';
     var cardSymbol = '';
     for(i=0; i<hand.length; i++){
@@ -95,7 +95,7 @@ function showHand(){                                    // Show players cards
     }
     document.getElementById("hand").innerHTML = handContent;
 }
-                                                        // Croupiers cards
+                                                        // Showing croupiers cards
 function showCroupierHand(){
     var croupierHandContent='';
 
@@ -113,7 +113,7 @@ function showPoints(cPoints, pName, isStand){
     if (pName === 'hand'){
         var handPoints = playerPoints(hand);                    
 
-        if(handPoints.length===1){                      // Bez Asa            
+        if(handPoints.length===1){                      // Without Ace card            
             if(handPoints[0]===21){                
                 playerWins();
                 console.log('Gracz zdobył 21 punktów - gracz wygrywa');              
@@ -123,7 +123,7 @@ function showPoints(cPoints, pName, isStand){
                 console.log('Gracz przekroczył 21 punktów - gracz przegrywa'); 
             }            
             document.getElementById("total-points-hand").innerHTML = handPoints[0];
-        }else{                                          // Z Asem                                                                                                
+        }else{                                          // With Ace card                                                                                               
             var oPoints = 0;
             for(i=0; i<handPoints.length; i++){
                 if(handPoints[i]===21){

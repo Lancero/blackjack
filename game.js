@@ -159,57 +159,48 @@ var sortByRandom = function(){ 								// Losowanie jednej karty z talii - wybra
 	var realMax = Math.max(...deck.map(o => o.random)); 		// Max wartość random
 }
 
-var auto1 = function(){ 			// Początek rozgrywki (po dwie kart dla gracza)
+var auto1 = function(){ 										// Start game autoplay (first two moves)
 	var i;
-	var delay = 400;  				// 400
+	var delay = 400;  											// default: 400 ms
 	for(i=0; i<4; i++){
 		setTimeout(function(){
 			maxRandom();
 			showHand();
 			showCroupierHand();
-		}, delay+=500); 				//500
+		}, delay+=500); 										// default: 500 ms
 	}
 }
 
 // *** BUTTONS CONTROLS ***
 
-$(document).ready(function(){
+$(document).ready(() =>{
 	shuffle();
 });
 
-$('#random-card').click(function(){
-	shuffle();
-});
-$('#btn-2').click(function(){
-	maxRandom();
-	showHand();
-	showCroupierHand();
-});
-
-$('#btn-hit').click(function(){
+$('#btn-hit').click(() =>{										// Hit button actions
 	hit();
 	showHand();
 });
 
-$('#btn-stand').click(function(){
+$('#btn-stand').click(function(){								// Stand button actions
 	standCheck();
 	$('.croupier-wrapper h4').removeClass('invisible');
 });
 
-$('#btn-start').click(function(){
+$('#btn-start').click(function(){								// Start button action
 	$('#btn-start').addClass('d-none');
 	auto1();
 	$('#info-start-game').addClass('d-none');
 	$('.hand-wrapper h4').removeClass('d-none');
 });
 
-$('#info-start-game').click(function(){
+$('#info-start-game').click(function(){							// Start info click action
 	$('#btn-start').addClass('d-none');
 	auto1();
 	$('#info-start-game').addClass('d-none');
 	$('.hand-wrapper h4').removeClass('d-none');
 });
 
-$('#btn-reset').click(function(){
+$('#btn-reset').click(function(){								// New Game - Restart
 	location.reload();
 });
